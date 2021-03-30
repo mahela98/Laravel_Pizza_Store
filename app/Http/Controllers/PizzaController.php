@@ -45,16 +45,25 @@ class PizzaController extends Controller
         error_log(request('name'));
         error_log(request('type'));
         error_log(request('base'));
+        // error_log(request('toppings'));
         $pizza = new Pizza();
         $pizza->name =  request('name');
         $pizza->type =  request('type');
         $pizza->base =  request('base');
+        $pizza->toppings =request('toppings');
 
+        // return request('toppings');
         error_log($pizza);
         $pizza->save();
 
         //this sends data witha a session
         return redirect('/')->with('msg','Thanks For Your Order') ;
+    }
+
+    public function distroy( $id){
+        $pizza = Pizza::findOrFail($id);
+        $pizza->delete();
+        return redirect('/pizza');
     }
 
 }

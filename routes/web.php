@@ -23,3 +23,4 @@ Route::get('/pizza/create','App\Http\Controllers\PizzaController@create');
 Route::get('/pizza/{id}', 'App\Http\Controllers\PizzaController@show');
 
 Route::post('/pizza','App\Http\Controllers\PizzaController@store');
+Route::delete('/pizza/{id}','App\Http\Controllers\PizzaController@distroy');
