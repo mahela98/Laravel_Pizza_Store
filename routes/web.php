@@ -18,13 +18,15 @@ Route::get('/', function () {
 });
 
 
-Route::get('/pizza','App\Http\Controllers\PizzaController@index');
+Route::get('/pizza','App\Http\Controllers\PizzaController@index')->middleware('auth');
 Route::get('/pizza/create','App\Http\Controllers\PizzaController@create'); 
-Route::get('/pizza/{id}', 'App\Http\Controllers\PizzaController@show');
+Route::get('/pizza/{id}', 'App\Http\Controllers\PizzaController@show')->middleware('auth');
 
 Route::post('/pizza','App\Http\Controllers\PizzaController@store');
-Route::delete('/pizza/{id}','App\Http\Controllers\PizzaController@distroy');
+Route::delete('/pizza/{id}','App\Http\Controllers\PizzaController@distroy')->middleware('auth');
 
-Auth::routes();
+Auth::routes([
+    'register' => false
+]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
